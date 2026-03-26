@@ -1,14 +1,20 @@
+/* Basic styling */
 body {
     font-family: Arial, sans-serif;
+    background-color: #f4f4f9;
     margin: 0;
-    background: #f5f7fa;
+    padding: 0;
 }
 
 header {
-    background: #1e3a8a;
+    background-color: #1e3a8a;
     color: white;
     text-align: center;
     padding: 40px;
+}
+
+h2 {
+    color: #1e3a8a;
 }
 
 section {
@@ -16,22 +22,56 @@ section {
     margin: 20px;
     background: white;
     border-radius: 10px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
 }
 
-h2 {
-    color: #1e3a8a;
+/* Smooth transition for interactive elements */
+input, select, button {
+    padding: 10px;
+    margin: 10px 0;
+    width: 100%;
+    border: 2px solid #ccc;
+    border-radius: 5px;
 }
 
-.card {
-    background: #eef2ff;
+button {
+    background-color: #1e3a8a;
+    color: white;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+button:hover {
+    background-color: #2563eb;
+}
+
+/* Hover effect for cards */
+.role-card {
+    background-color: #eef2ff;
     padding: 15px;
     margin: 10px 0;
     border-radius: 8px;
+    transition: transform 0.3s;
 }
 
-footer {
-    text-align: center;
-    padding: 20px;
-    background: #1e3a8a;
-    color: white;
+.role-card:hover {
+    transform: scale(1.05);
+}
+
+/* Form success message */
+#form-response {
+    color: green;
+    font-weight: bold;
+}
+
+/* Fade-in animation for sections */
+section {
+    opacity: 0;
+    animation: fadeIn 1s forwards;
+}
+
+@keyframes fadeIn {
+    to {
+        opacity: 1;
+    }
 }
