@@ -2,8 +2,10 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>S1 Team Recruitment</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>S1 Team - Recruitment</title>
     <link rel="stylesheet" href="style.css">
+    <script src="script.js" defer></script>
 </head>
 <body>
 
@@ -22,7 +24,7 @@
 
 <section id="work">
     <h2>What We Will Do</h2>
-    <ul>
+    <ul id="work-list">
         <li>Sensor firmware implementation and calibration</li>
         <li>Wireless communication protocol design</li>
         <li>Define data packet format</li>
@@ -34,41 +36,41 @@
 
 <section id="roles">
     <h2>Open Roles</h2>
-
-    <div class="card">
+    <div class="role-card">
         <h3>Project Manager (PM)</h3>
         <p>Coordinate team progress and manage sprints.</p>
     </div>
-
-    <div class="card">
+    <div class="role-card">
         <h3>Vice PM</h3>
         <p>Assist coordination and post daily updates.</p>
     </div>
-
-    <div class="card">
+    <div class="role-card">
         <h3>System Architect</h3>
         <p>Design communication protocol and system interfaces.</p>
     </div>
-
-    <div class="card">
+    <div class="role-card">
         <h3>Programmer</h3>
         <p>Sensor firmware, calibration, hardware integration.</p>
     </div>
-
-</section>
-
-<section id="requirements">
-    <h2>What We’re Looking For</h2>
-    <ul>
-        <li>Interest in IoT / Embedded Systems</li>
-        <li>Good communication skills</li>
-        <li>Commitment during sprint</li>
-    </ul>
 </section>
 
 <section id="join">
     <h2>How to Join</h2>
-    <p>Contact us via WeChat to join the team!</p>
+    <form id="contact-form">
+        <label for="name">Your Name:</label>
+        <input type="text" id="name" name="name" required>
+
+        <label for="role">Preferred Role:</label>
+        <select id="role" name="role" required>
+            <option value="PM">Project Manager</option>
+            <option value="Vice PM">Vice PM</option>
+            <option value="System Architect">System Architect</option>
+            <option value="Programmer">Programmer</option>
+        </select>
+
+        <button type="submit">Submit</button>
+    </form>
+    <p id="form-response" style="display:none;"></p>
 </section>
 
 <footer>
