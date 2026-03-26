@@ -1,0 +1,37 @@
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    background: #f5f7fa;
+}
+
+header {
+    background: #1e3a8a;
+    color: white;
+    text-align: center;
+    padding: 40px;
+}
+
+section {
+    padding: 40px;
+    margin: 20px;
+    background: white;
+    border-radius: 10px;
+}
+
+h2 {
+    color: #1e3a8a;
+}
+
+.card {
+    background: #eef2ff;
+    padding: 15px;
+    margin: 10px 0;
+    border-radius: 8px;
+}
+
+footer {
+    text-align: center;
+    padding: 20px;
+    background: #1e3a8a;
+    color: white;
+}
