@@ -1,215 +1,239 @@
-/* ---- 新增的动态交互样式 ---- */
-
-.add-form-panel {
-  margin-bottom: 24px;
-  padding: 24px;
+:root {
+  --bg: #081120;
+  --panel: rgba(12, 23, 42, 0.78);
+  --panel-strong: #0f1c31;
+  --line: rgba(255, 255, 255, 0.08);
+  --text: #eef4ff;
+  --muted: #b9c7e6;
+  --primary: #67b8ff;
+  --primary-strong: #2c8fff;
+  --success: #53d9a2;
+  --warning: #ffca6e;
+  --danger: #ff5e68;
+  --shadow: 0 20px 60px rgba(0, 0, 0, 0.28);
+  --radius: 22px;
 }
-.add-form-panel h3 {
-  margin-top: 0;
-  margin-bottom: 16px;
-}
-.form-group {
-  display: flex;
-  gap: 12px;
-  margin-bottom: 12px;
-  flex-wrap: wrap;
-}
-.form-input {
-  flex: 1;
-  min-width: 200px;
-  background: rgba(3, 10, 22, 0.6);
-  border: 1px solid var(--line);
+* { box-sizing: border-box; }
+html { scroll-behavior: smooth; }
+body {
+  margin: 0;
+  font-family: Inter, system-ui, sans-serif;
   color: var(--text);
-  padding: 12px 14px;
-  border-radius: 10px;
-  font-family: inherit;
-  font-size: 14px;
-  transition: border-color 0.2s;
+  background:
+    linear-gradient(rgba(0, 173, 255, 0.08) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(0, 173, 255, 0.08) 1px, transparent 1px),
+    radial-gradient(circle at top left, rgba(75, 142, 255, 0.16), transparent 30%),
+    radial-gradient(circle at right, rgba(71, 214, 166, 0.08), transparent 25%),
+    linear-gradient(180deg, #050c17 0%, #071425 100%);
+  background-size: 48px 48px, 48px 48px, auto, auto, auto;
 }
-.form-input:focus {
-  outline: none;
-  border-color: var(--primary);
+button { font: inherit; }
+.site-shell { width: min(1320px, calc(100% - 12px)); margin: 0 auto; }
+.hero { padding: 10px 0 24px; }
+.topbar {
+  display: flex; align-items: center; justify-content: space-between; gap: 16px;
+  padding: 16px 18px; border: 1px solid rgba(0, 195, 255, 0.22); background: rgba(3, 10, 22, 0.88);
+  backdrop-filter: blur(14px); border-radius: 999px; position: sticky; top: 12px; z-index: 50;
 }
-textarea.form-input {
-  resize: vertical;
-  min-height: 80px;
+.brand { display: flex; align-items: center; gap: 14px; }
+.brand-mark {
+  width: 50px; height: 50px; display: grid; place-items: center; border-radius: 16px;
+  background: linear-gradient(135deg, var(--primary), #7de7cb); color: #04111e; font-weight: 800;
 }
-
-/* Members 编辑区域样式 */
-.editable-field {
-  border: 1px dashed transparent;
-  border-radius: 6px;
-  transition: all 0.2s ease;
+.eyebrow, .section-tag, .chip, .news-date { text-transform: uppercase; letter-spacing: 0.12em; font-size: 12px; color: var(--muted); }
+.brand h1 { font-size: 20px; margin: 2px 0 0; }
+.nav-links { display: flex; gap: 10px; }
+.nav-link, .secondary-btn, .primary-btn, .menu-button, .news-toggle {
+  border: none; cursor: pointer;
 }
-.editable-field:hover {
-  border-color: rgba(103, 184, 255, 0.4);
-  background: rgba(255, 255, 255, 0.03);
-  cursor: text;
+.nav-link {
+  padding: 10px 14px; border-radius: 999px; background: transparent; color: var(--muted);
 }
-.editable-field:focus {
-  outline: none;
-  border-color: var(--primary);
-  background: rgba(103, 184, 255, 0.1);
+.nav-link.active, .nav-link:hover {
+  background: rgba(103, 184, 255, 0.16); color: var(--text);
 }
-.editable-hint {
-  display: inline-block;
-  font-size: 13px;
-  color: var(--primary);
-  background: rgba(103, 184, 255, 0.1);
-  padding: 6px 12px;
-  border-radius: 6px;
-  margin-bottom: 20px;
+.menu-button { display: none; background: transparent; color: var(--text); font-size: 22px; }
+.hero-content { display: grid; grid-template-columns: 1.3fr 0.9fr; gap: 22px; margin-top: 26px; }
+.card {
+  background: rgba(1, 9, 24, 0.88); border: 1px solid rgba(0, 195, 255, 0.22); border-radius: 10px;
+  box-shadow: var(--shadow); backdrop-filter: blur(12px);
 }
-
-/* 允许 Gantt 图向下扩展 */
-.chart-area, .chart-area-bottom {
-  min-height: auto;
-  padding-bottom: 40px; /* 留出空间给最后加入的任务 */
+.hero-copy, .hero-panel, .info-card, .timeline-card, .news-card, .member-card, .stat-card, .member-profile-panel { padding: 28px; }
+.hero-copy h2 { font-size: clamp(34px, 4vw, 58px); line-height: 1.05; margin: 16px 0; }
+.hero-copy p, .section-heading p, .info-card p, .timeline-card p, .member-card p, .news-body p, .profile-description { color: var(--muted); line-height: 1.7; }
+.chip {
+  display: inline-flex; padding: 8px 12px; border-radius: 999px; background: rgba(103, 184, 255, 0.12);
+  border: 1px solid rgba(103, 184, 255, 0.2);
 }
-
-/* ---- Form Panels Beautification ---- */
-.form-panels-grid {
-  margin-bottom: 28px;
-}
-.glass-panel {
-  background: rgba(12, 23, 42, 0.4);
-  border: 1px solid rgba(0, 195, 255, 0.15);
-  backdrop-filter: blur(16px);
-  -webkit-backdrop-filter: blur(16px);
-  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
-}
-.add-form-panel h3 {
-  display: flex;
-  align-items: center;
-  gap: 10px;
-  color: var(--text);
-}
-.form-hint {
-  font-size: 13px;
-  color: var(--muted);
-  margin-top: -10px;
-  margin-bottom: 16px;
-}
-.flex-row {
-  display: flex;
-  gap: 12px;
-  align-items: stretch;
-}
-.flex-row .form-input {
-  flex: 1;
-}
-.shrink-btn {
-  flex-shrink: 0;
-  white-space: nowrap;
-}
-
-/* ---- Gantt Chart Grid Update for Dynamic Phases ---- */
-.schedule-grid {
-  display: grid;
-  grid-template-columns: 220px 1fr;
-  /* 使用 auto-rows 让新增的 phase 高度根据内容(内部task数量)自适应 */
-  grid-auto-rows: minmax(80px, auto);
-  gap: 0;
-  position: relative;
+.hero-actions { display: flex; gap: 12px; margin-top: 22px; flex-wrap: wrap; }
+.primary-btn, .secondary-btn { padding: 13px 18px; border-radius: 14px; }
+.primary-btn { background: linear-gradient(135deg, var(--primary), var(--primary-strong)); color: #081120; font-weight: 700; }
+.secondary-btn { background: rgba(255,255,255,0.04); color: var(--text); border: 1px solid var(--line); }
+.hero-panel h3, .section-heading h2 { margin-top: 0; }
+.hero-panel ul, .member-card ul, .timeline-card ol { margin: 16px 0 0; padding-left: 18px; color: var(--muted); line-height: 1.8; }
+.page { display: none; padding: 26px 0 10px; }
+.active-page { display: block; animation: fadeIn 0.35s ease; }
+.section-heading { margin-bottom: 22px; }
+.progress-heading h2 { font-size: 58px; font-weight: 800; margin-bottom: 24px; }
+.progress-heading p { font-size: 22px; margin-top: 0; }
+.grid { display: grid; gap: 20px; }
+.two-col { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+.stats-grid { grid-template-columns: repeat(4, minmax(0, 1fr)); margin: 20px 0; }
+.stat-card { text-align: center; }
+.stat-value { display: block; font-size: 42px; font-weight: 800; }
+.stat-label { color: var(--muted); }
+.checklist { display: grid; gap: 12px; margin-top: 16px; color: var(--muted); }
+.progress-panel { padding: 24px 18px 18px; }
+.schedule-board {
+  background: linear-gradient(180deg, rgba(0,0,0,0.08), rgba(0,0,0,0.16));
   border-radius: 8px;
-  overflow: hidden;
-  border: 1px solid rgba(255,255,255,0.05);
+  padding: 44px 36px 24px;
 }
-
-/* 贯穿全局的背景线和指针容器 */
-.grid-lines-container {
-  position: absolute;
-  top: 0; right: 0; bottom: 0; left: 220px;
-  pointer-events: none;
-  z-index: 0;
+.schedule-board h3 {
+  text-align: center; font-size: 28px; margin: 18px 0 30px; color: rgba(255,255,255,0.9);
 }
-.grid-lines {
-  width: 100%; height: 100%;
+.date-axis {
+  margin-left: 220px;
   display: grid;
-  grid-template-columns: repeat(8, 1fr);
+  grid-template-columns: repeat(9, 1fr);
+  padding: 8px 0 0;
+  color: rgba(235, 238, 246, 0.76);
+  font-size: 14px;
+  text-align: center;
 }
-.grid-lines span {
-  border-left: 1px solid rgba(255,255,255,0.08);
+.news-list, .member-grid { display: grid; gap: 16px; }
+.member-grid { grid-template-columns: repeat(3, minmax(0, 1fr)); }
+.default-member-grid { margin-bottom: 18px; }
+.news-toggle {
+  width: 100%; display: flex; justify-content: space-between; align-items: center;
+  background: transparent; color: var(--text); padding: 0; text-align: left;
+}
+.news-body { margin-top: 14px; display: none; }
+.expandable.open .news-body { display: block; }
+.toggle-icon { font-size: 30px; color: var(--muted); }
+.avatar {
+  width: 58px; height: 58px; display: grid; place-items: center; border-radius: 18px;
+  background: linear-gradient(135deg, rgba(103,184,255,0.25), rgba(125,231,203,0.2));
+  margin-bottom: 16px; font-weight: 800;
+}
+.emoji-avatar { font-size: 28px; }
+.member-mini-top { display: flex; align-items: center; gap: 16px; margin-bottom: 16px; }
+.member-role-text { color: #ff2a62 !important; margin: 8px 0 0; }
+.profile-trigger { cursor: pointer; transition: transform 0.2s ease, border-color 0.2s ease; }
+.profile-trigger:hover { transform: translateY(-4px); border-color: rgba(120, 200, 255, 0.48); }
+.member-profile-panel { padding: 34px 32px 40px; }
+.member-profile-header { display: flex; gap: 28px; align-items: center; }
+.member-profile-avatar {
+  width: 120px; height: 120px; border-radius: 28px; display: grid; place-items: center; font-size: 74px;
+  background: linear-gradient(135deg, rgba(103,184,255,0.35), rgba(125,231,203,0.18));
+}
+.member-profile-headings h2 { font-size: 52px; margin: 0 0 14px; }
+.profile-role { font-size: 20px; color: #ff1e5d; margin: 0 0 18px; }
+.profile-skills { font-size: 18px; color: rgba(255,255,255,0.45); margin: 0; }
+.profile-divider { height: 1px; background: rgba(255,255,255,0.08); margin: 28px 0; }
+#profileTitle { font-size: 46px; margin: 0; }
+.profile-description { font-size: 20px; margin: 0; }
+.accent-card { outline: 1px solid rgba(255, 202, 110, 0.35); }
+.footer { padding: 18px 0 40px; color: var(--muted); text-align: center; }
+@keyframes fadeIn { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: translateY(0); } }
+
+/* Responsive adjustments */
+@media (max-width: 1100px) {
+  .hero-content, .two-col, .stats-grid, .member-grid, .form-panels-grid { grid-template-columns: 1fr; }
+  .schedule-grid { grid-template-columns: 1fr; }
+  .date-axis { margin-left: 0; grid-template-columns: repeat(3, 1fr); gap: 10px; }
+  .grid-lines-container { display: none; }
+  .task-bar { position: relative !important; width: auto !important; left: auto !important; top: auto !important; margin: 14px; }
+  .member-profile-header { flex-direction: column; align-items: flex-start; }
+  .member-profile-headings h2, .progress-heading h2, #profileTitle { font-size: 36px; }
+}
+@media (max-width: 760px) {
+  .topbar { border-radius: 24px; align-items: flex-start; }
+  .menu-button { display: block; }
+  .nav-links {
+    display: none; position: absolute; right: 18px; top: 72px; flex-direction: column; width: 200px;
+    padding: 12px; border-radius: 20px; background: rgba(9, 21, 39, 0.96); border: 1px solid var(--line);
+  }
+  .nav-links.open { display: flex; }
+  .site-shell { width: min(1320px, calc(100% - 8px)); }
+  .schedule-board { padding: 24px 14px 18px; }
+  .member-profile-avatar { width: 92px; height: 92px; font-size: 52px; }
+  .member-profile-panel, .hero-copy, .hero-panel, .info-card, .timeline-card, .news-card, .member-card, .stat-card { padding: 20px; }
 }
 
-/* 更新 Today Line：高度贯穿所有 Phase */
+/* =========================================
+   Dynamic Interactive Additions & Gantt V2
+   ========================================= */
+
+.add-form-panel { margin-bottom: 24px; padding: 24px; }
+.add-form-panel h3 { margin-top: 0; margin-bottom: 16px; display: flex; align-items: center; gap: 10px; color: var(--text); }
+.form-group { display: flex; gap: 12px; margin-bottom: 12px; flex-wrap: wrap; }
+.form-input {
+  flex: 1; min-width: 200px; background: rgba(3, 10, 22, 0.6); border: 1px solid var(--line);
+  color: var(--text); padding: 12px 14px; border-radius: 10px; font-family: inherit; font-size: 14px; transition: border-color 0.2s;
+}
+.form-input:focus { outline: none; border-color: var(--primary); }
+textarea.form-input { resize: vertical; min-height: 80px; }
+.form-panels-grid { margin-bottom: 28px; }
+.glass-panel {
+  background: rgba(12, 23, 42, 0.4); border: 1px solid rgba(0, 195, 255, 0.15);
+  backdrop-filter: blur(16px); -webkit-backdrop-filter: blur(16px); box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
+}
+.form-hint { font-size: 13px; color: var(--muted); margin-top: -10px; margin-bottom: 16px; }
+.flex-row { display: flex; gap: 12px; align-items: stretch; }
+.flex-row .form-input { flex: 1; }
+.shrink-btn { flex-shrink: 0; white-space: nowrap; }
+
+/* Editable Fields */
+.editable-field { border: 1px dashed transparent; border-radius: 6px; transition: all 0.2s ease; }
+.editable-field:hover { border-color: rgba(103, 184, 255, 0.4); background: rgba(255, 255, 255, 0.03); cursor: text; }
+.editable-field:focus { outline: none; border-color: var(--primary); background: rgba(103, 184, 255, 0.1); }
+.editable-hint { display: inline-block; font-size: 13px; color: var(--primary); background: rgba(103, 184, 255, 0.1); padding: 6px 12px; border-radius: 6px; }
+
+/* Dynamic Gantt Chart Grid */
+.schedule-grid {
+  display: grid; grid-template-columns: 220px 1fr; grid-auto-rows: minmax(80px, auto); gap: 0;
+  position: relative; border-radius: 8px; overflow: hidden; border: 1px solid rgba(255,255,255,0.05);
+}
+.grid-lines-container { position: absolute; top: 0; right: 0; bottom: 0; left: 220px; pointer-events: none; z-index: 0; }
+.grid-lines { width: 100%; height: 100%; display: grid; grid-template-columns: repeat(8, 1fr); }
+.grid-lines span { border-left: 1px solid rgba(255,255,255,0.08); }
+
+/* Today Line */
 .today-line {
-  position: absolute;
-  top: 0;
-  bottom: 0;
-  width: 2px;
-  background: linear-gradient(to bottom, #ff4d6d, #ff2a62);
-  box-shadow: 0 0 10px rgba(255, 42, 98, 0.6);
-  z-index: 10;
-  transform: translateX(-50%); /* 居中对齐到具体百分比点 */
+  position: absolute; top: 0; bottom: 0; width: 2px;
+  background: linear-gradient(to bottom, #ff4d6d, #ff2a62); box-shadow: 0 0 10px rgba(255, 42, 98, 0.6);
+  z-index: 10; transform: translateX(-50%);
 }
 .today-line::after {
-  content: "▼";
-  position: absolute;
-  top: -12px;
-  left: 50%;
-  transform: translateX(-50%);
-  color: #ff4d6d;
-  font-size: 14px;
+  content: "▼"; position: absolute; top: -12px; left: 50%; transform: translateX(-50%);
+  color: #ff4d6d; font-size: 14px;
 }
 
-/* Phase 名称单元格样式 */
+/* Phase and Task Styles */
 .phase {
-  display: flex;
-  align-items: center;
-  padding: 16px;
-  font-size: 14px;
-  font-weight: 700;
-  color: #f2f5fb;
-  z-index: 1;
-  border-bottom: 1px solid rgba(255,255,255,0.05);
+  display: flex; align-items: center; padding: 16px; font-size: 14px; font-weight: 700;
+  color: #f2f5fb; z-index: 1; border-bottom: 1px solid rgba(255,255,255,0.05);
 }
 .phase-bg-1 { background: rgba(177, 157, 96, 0.15); }
 .phase-bg-2 { background: rgba(10, 18, 38, 0.6); }
 
-/* Chart Area 样式 */
 .chart-area {
-  position: relative;
-  min-height: 80px;
-  padding-bottom: 16px; /* 底部留白 */
-  border-bottom: 1px solid rgba(255,255,255,0.05);
-  z-index: 1;
+  position: relative; min-height: 80px; padding-bottom: 16px;
+  border-bottom: 1px solid rgba(255,255,255,0.05); z-index: 1;
 }
-/* 背景需要和对应的Phase交替呼应 */
 .phase-bg-1 + .chart-area { background: rgba(177, 157, 96, 0.05); }
 .phase-bg-2 + .chart-area { background: rgba(10, 18, 38, 0.3); }
 
-/* 任务条动画和样式微调 */
 .task-bar {
-  position: absolute;
-  height: 32px;
-  border-radius: 6px;
-  background: rgba(100, 110, 130, 0.6);
-  border: 1px solid rgba(255,255,255,0.3);
-  display: flex;
-  align-items: center;
-  padding: 0 10px;
-  color: #fff;
-  font-size: 13px;
-  font-weight: 500;
-  box-shadow: 0 4px 12px rgba(0,0,0,0.2);
-  transition: transform 0.2s, box-shadow 0.2s;
-  cursor: default;
-  overflow: hidden;
+  position: absolute; height: 32px; border-radius: 6px; background: rgba(100, 110, 130, 0.6);
+  border: 1px solid rgba(255,255,255,0.3); display: flex; align-items: center; padding: 0 10px;
+  color: #fff; font-size: 13px; font-weight: 500; box-shadow: 0 4px 12px rgba(0,0,0,0.2);
+  transition: transform 0.2s, box-shadow 0.2s; cursor: default; overflow: hidden;
 }
-.task-bar:hover {
-  transform: translateY(-2px);
-  box-shadow: 0 6px 16px rgba(0,0,0,0.4);
-  z-index: 20;
-}
-.task-bar span {
-  white-space: nowrap;
-  overflow: hidden;
-  text-overflow: ellipsis;
-}
+.task-bar:hover { transform: translateY(-2px); box-shadow: 0 6px 16px rgba(0,0,0,0.4); z-index: 20; }
+.task-bar span { white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
 .active-task {
   background: linear-gradient(90deg, var(--primary-strong), var(--primary));
-  border: 1px solid rgba(255,255,255,0.8);
-  color: #04111e;
-  font-weight: 700;
+  border: 1px solid rgba(255,255,255,0.8); color: #04111e; font-weight: 700;
 }
