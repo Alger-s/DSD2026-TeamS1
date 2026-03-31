@@ -71,7 +71,6 @@ editableIds.forEach(id => {
   if (!el) return;
   el.addEventListener('input', (e) => {
     if (!currentMemberKey) return;
-    
     const keyMap = {
       profileAvatar: 'avatar', profileName: 'name', profileRole: 'role', 
       profileSkills: 'skills', profileTitle: 'title', profileDescription: 'description'
@@ -101,24 +100,16 @@ document.getElementById('addNewsBtn')?.addEventListener('click', () => {
   const title = document.getElementById('newNewsTitle').value.trim();
   const content = document.getElementById('newNewsContent').value.trim();
 
-  if (!title) {
-    alert('Please enter a news title!');
-    return;
-  }
+  if (!title) return alert('Please enter a news title!');
 
   const article = document.createElement('article');
   article.className = 'card news-card expandable open';
   article.innerHTML = `
     <button class="news-toggle">
-      <div>
-        <span class="news-date">${dateStr}</span>
-        <h3>${title}</h3>
-      </div>
+      <div><span class="news-date">${dateStr}</span><h3>${title}</h3></div>
       <span class="toggle-icon">−</span>
     </button>
-    <div class="news-body">
-      <p>${content}</p>
-    </div>
+    <div class="news-body"><p>${content}</p></div>
   `;
 
   document.getElementById('newsList').prepend(article);
@@ -128,12 +119,14 @@ document.getElementById('addNewsBtn')?.addEventListener('click', () => {
   document.getElementById('newNewsContent').value = '';
 });
 
-// --- 3. Gantt Chart Dynamic Logic ---
+
+// --- 3. Gantt Chart Dynamic Logic (Editable & Auto-Height) ---
 const TIMELINE_START = new Date('2026-03-25T00:00:00');
 const TIMELINE_END = new Date('2026-04-09T00:00:00');
 const TOTAL_DAYS = (TIMELINE_END - TIMELINE_START) / (1000 * 60 * 60 * 24); 
 
 let phaseCount = 2; 
+let currentEditTask = null; // 追踪当前正在编辑的任务
 
 function calculatePercentage(dateString) {
   const targetDate = new Date(dateString + 'T00:00:00');
@@ -149,18 +142,25 @@ function calculateWidthPercentage(days) {
 function updateTodayLine() {
   const todayLine = document.getElementById('todayLine');
   if (!todayLine) return;
-  
   const now = new Date();
-  const todayStr = now.toISOString().split('T')[0];
-  
-  // Set pointer to today if within project dates, otherwise default to a demo date
-  let dateToUse = todayStr;
-  if (now < TIMELINE_START || now > TIMELINE_END) {
-    dateToUse = '2026-03-31';
-  }
+  let dateToUse = now.toISOString().split('T')[0];
+  if (now < TIMELINE_START || now > TIMELINE_END) dateToUse = '2026-03-31';
+  todayLine.style.left = `${calculatePercentage(dateToUse)}%`;
+}
 
-  const leftPercent = calculatePercentage(dateToUse);
-  todayLine.style.left = `${leftPercent}%`;
+// 核心：动态计算高度并重排任务，解决重叠问题
+function recalculateAreaHeights() {
+  const areas = document.querySelectorAll('.chart-area');
+  areas.forEach(area => {
+    const tasks = area.querySelectorAll('.task-bar');
+    tasks.forEach((task, index) => {
+      // 保证每个任务独立占一行，纵向错开 40px
+      task.style.top = `${8 + (index * 40)}px`;
+    });
+    // 根据任务数量撑大背景高度
+    const requiredHeight = 16 + (tasks.length * 40);
+    area.style.minHeight = `${Math.max(80, requiredHeight)}px`;
+  });
 }
 
 document.getElementById('addPhaseBtn')?.addEventListener('click', () => {
@@ -192,25 +192,35 @@ document.getElementById('addPhaseBtn')?.addEventListener('click', () => {
   document.getElementById('newPhaseName').value = '';
 });
 
+// 生成/添加任务
 function createTask(name, phaseId, startDateStr, durationDays, isActive = false) {
   const targetArea = document.getElementById(phaseId);
   if (!targetArea) return;
 
-  const leftPercent = calculatePercentage(startDateStr);
-  const widthPercent = calculateWidthPercentage(durationDays);
-  
-  const existingTasks = targetArea.querySelectorAll('.task-bar').length;
-  const topPos = 8 + (existingTasks * 40); 
-
   const taskBar = document.createElement('div');
   taskBar.className = `task-bar ${isActive ? 'active-task' : ''}`;
-  taskBar.title = `${name} (${startDateStr}, ${durationDays} days)`;
-  taskBar.style.left = `${leftPercent}%`;
-  taskBar.style.width = `${widthPercent}%`;
-  taskBar.style.top = `${topPos}px`;
+  
+  // 绑定数据用于后续编辑
+  taskBar.dataset.name = name;
+  taskBar.dataset.start = startDateStr;
+  taskBar.dataset.days = durationDays;
+  taskBar.title = `Click to edit: ${name}`;
+
+  taskBar.style.left = `${calculatePercentage(startDateStr)}%`;
+  taskBar.style.width = `${calculateWidthPercentage(durationDays)}%`;
   taskBar.innerHTML = `<span>${name}</span>`;
 
+  // 点击事件：呼出编辑弹窗
+  taskBar.addEventListener('click', () => {
+    currentEditTask = taskBar;
+    document.getElementById('editTaskName').value = taskBar.dataset.name;
+    document.getElementById('editTaskStart').value = taskBar.dataset.start;
+    document.getElementById('editTaskDays').value = taskBar.dataset.days;
+    document.getElementById('editTaskModal').classList.remove('hidden');
+  });
+
   targetArea.appendChild(taskBar);
+  recalculateAreaHeights(); // 重排布局，防止重叠
 }
 
 document.getElementById('addTaskBtn')?.addEventListener('click', () => {
@@ -219,9 +229,7 @@ document.getElementById('addTaskBtn')?.addEventListener('click', () => {
   const start = document.getElementById('newTaskStart').value;
   const days = parseInt(document.getElementById('newTaskDays').value);
 
-  if (!name || !start || isNaN(days) || days <= 0) {
-    return alert('Please fill in all task fields correctly!');
-  }
+  if (!name || !start || isNaN(days) || days <= 0) return alert('Please fill in all task fields correctly!');
 
   createTask(name, phaseId, start, days, true);
 
@@ -229,10 +237,48 @@ document.getElementById('addTaskBtn')?.addEventListener('click', () => {
   document.getElementById('newTaskDays').value = '';
 });
 
+// --- Modal Action Logic ---
+document.getElementById('cancelEditBtn')?.addEventListener('click', () => {
+  document.getElementById('editTaskModal').classList.add('hidden');
+  currentEditTask = null;
+});
+
+document.getElementById('deleteTaskBtn')?.addEventListener('click', () => {
+  if (!currentEditTask) return;
+  currentEditTask.remove(); // 移除 DOM
+  document.getElementById('editTaskModal').classList.add('hidden');
+  currentEditTask = null;
+  recalculateAreaHeights(); // 缩窄背景高度
+});
+
+document.getElementById('saveTaskBtn')?.addEventListener('click', () => {
+  if (!currentEditTask) return;
+  const newName = document.getElementById('editTaskName').value.trim();
+  const newStart = document.getElementById('editTaskStart').value;
+  const newDays = parseInt(document.getElementById('editTaskDays').value);
+
+  if (!newName || !newStart || isNaN(newDays) || newDays <= 0) {
+    return alert('Please fill all fields correctly!');
+  }
+
+  // 更新底层数据
+  currentEditTask.dataset.name = newName;
+  currentEditTask.dataset.start = newStart;
+  currentEditTask.dataset.days = newDays;
+
+  // 更新视觉呈现
+  currentEditTask.querySelector('span').textContent = newName;
+  currentEditTask.style.left = `${calculatePercentage(newStart)}%`;
+  currentEditTask.style.width = `${calculateWidthPercentage(newDays)}%`;
+  currentEditTask.title = `Click to edit: ${newName}`;
+
+  document.getElementById('editTaskModal').classList.add('hidden');
+  currentEditTask = null;
+});
+
 // Initialization
 window.addEventListener('DOMContentLoaded', () => {
   updateTodayLine();
-  // Initial demo tasks
   createTask('Tech Stack Planning', 'phase1Area', '2026-03-25', 2);
   createTask('Static Server & Routing', 'phase1Area', '2026-03-27', 3);
   createTask('Markdown Parsing Engine', 'phase1Area', '2026-03-29', 3, true);
