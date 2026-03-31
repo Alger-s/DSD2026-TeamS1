@@ -66,3 +66,150 @@ textarea.form-input {
   min-height: auto;
   padding-bottom: 40px; /* 留出空间给最后加入的任务 */
 }
+
+/* ---- Form Panels Beautification ---- */
+.form-panels-grid {
+  margin-bottom: 28px;
+}
+.glass-panel {
+  background: rgba(12, 23, 42, 0.4);
+  border: 1px solid rgba(0, 195, 255, 0.15);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
+}
+.add-form-panel h3 {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  color: var(--text);
+}
+.form-hint {
+  font-size: 13px;
+  color: var(--muted);
+  margin-top: -10px;
+  margin-bottom: 16px;
+}
+.flex-row {
+  display: flex;
+  gap: 12px;
+  align-items: stretch;
+}
+.flex-row .form-input {
+  flex: 1;
+}
+.shrink-btn {
+  flex-shrink: 0;
+  white-space: nowrap;
+}
+
+/* ---- Gantt Chart Grid Update for Dynamic Phases ---- */
+.schedule-grid {
+  display: grid;
+  grid-template-columns: 220px 1fr;
+  /* 使用 auto-rows 让新增的 phase 高度根据内容(内部task数量)自适应 */
+  grid-auto-rows: minmax(80px, auto);
+  gap: 0;
+  position: relative;
+  border-radius: 8px;
+  overflow: hidden;
+  border: 1px solid rgba(255,255,255,0.05);
+}
+
+/* 贯穿全局的背景线和指针容器 */
+.grid-lines-container {
+  position: absolute;
+  top: 0; right: 0; bottom: 0; left: 220px;
+  pointer-events: none;
+  z-index: 0;
+}
+.grid-lines {
+  width: 100%; height: 100%;
+  display: grid;
+  grid-template-columns: repeat(8, 1fr);
+}
+.grid-lines span {
+  border-left: 1px solid rgba(255,255,255,0.08);
+}
+
+/* 更新 Today Line：高度贯穿所有 Phase */
+.today-line {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  width: 2px;
+  background: linear-gradient(to bottom, #ff4d6d, #ff2a62);
+  box-shadow: 0 0 10px rgba(255, 42, 98, 0.6);
+  z-index: 10;
+  transform: translateX(-50%); /* 居中对齐到具体百分比点 */
+}
+.today-line::after {
+  content: "▼";
+  position: absolute;
+  top: -12px;
+  left: 50%;
+  transform: translateX(-50%);
+  color: #ff4d6d;
+  font-size: 14px;
+}
+
+/* Phase 名称单元格样式 */
+.phase {
+  display: flex;
+  align-items: center;
+  padding: 16px;
+  font-size: 14px;
+  font-weight: 700;
+  color: #f2f5fb;
+  z-index: 1;
+  border-bottom: 1px solid rgba(255,255,255,0.05);
+}
+.phase-bg-1 { background: rgba(177, 157, 96, 0.15); }
+.phase-bg-2 { background: rgba(10, 18, 38, 0.6); }
+
+/* Chart Area 样式 */
+.chart-area {
+  position: relative;
+  min-height: 80px;
+  padding-bottom: 16px; /* 底部留白 */
+  border-bottom: 1px solid rgba(255,255,255,0.05);
+  z-index: 1;
+}
+/* 背景需要和对应的Phase交替呼应 */
+.phase-bg-1 + .chart-area { background: rgba(177, 157, 96, 0.05); }
+.phase-bg-2 + .chart-area { background: rgba(10, 18, 38, 0.3); }
+
+/* 任务条动画和样式微调 */
+.task-bar {
+  position: absolute;
+  height: 32px;
+  border-radius: 6px;
+  background: rgba(100, 110, 130, 0.6);
+  border: 1px solid rgba(255,255,255,0.3);
+  display: flex;
+  align-items: center;
+  padding: 0 10px;
+  color: #fff;
+  font-size: 13px;
+  font-weight: 500;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.2);
+  transition: transform 0.2s, box-shadow 0.2s;
+  cursor: default;
+  overflow: hidden;
+}
+.task-bar:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 6px 16px rgba(0,0,0,0.4);
+  z-index: 20;
+}
+.task-bar span {
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+.active-task {
+  background: linear-gradient(90deg, var(--primary-strong), var(--primary));
+  border: 1px solid rgba(255,255,255,0.8);
+  color: #04111e;
+  font-weight: 700;
+}
