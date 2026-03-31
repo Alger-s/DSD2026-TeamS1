@@ -114,10 +114,10 @@
             <article class="card timeline-card">
               <h3>Deliverable checklist</h3>
               <div class="checklist">
-                <label><input type="checkbox" checked /> Team scope defined</label>
-                <label><input type="checkbox" checked /> Roles assigned</label>
-                <label><input type="checkbox" checked /> Website structure designed</label>
-                <label><input type="checkbox" /> IF1 finalized</label>
+                <label><input type="checkbox" checked disabled/> Team scope defined</label>
+                <label><input type="checkbox" checked disabled/> Roles assigned</label>
+                <label><input type="checkbox" checked disabled/> Website structure designed</label>
+                <label><input type="checkbox" disabled/> IF1 finalized</label>
               </div>
             </article>
           </div>
@@ -126,39 +126,10 @@
         <section id="progress" class="page">
           <div class="section-heading progress-heading">
             <h2>Progress</h2>
-            <p>Project Schedule & Task Management</p>
+            <p>Project Schedule</p>
           </div>
 
-          <div class="grid two-col form-panels-grid">
-            <div class="card add-form-panel glass-panel">
-              <h3><span class="icon">📁</span> Add New Phase</h3>
-              <p class="form-hint">Create a new development phase block.</p>
-              <div class="form-group flex-row">
-                <input type="text" id="newPhaseName" class="form-input" placeholder="e.g. Phase 3: Deployment">
-                <button id="addPhaseBtn" class="primary-btn shrink-btn">Add Phase</button>
-              </div>
-            </div>
-
-            <div class="card add-form-panel glass-panel">
-              <h3><span class="icon">📌</span> Add New Task</h3>
-              <p class="form-hint">Specify start date and duration (in days).</p>
-              <div class="form-group">
-                <input type="text" id="newTaskName" class="form-input" placeholder="Task Name (e.g. Code Review)">
-                <select id="newTaskPhase" class="form-input">
-                  <option value="phase1Area">Phase 1: Infrastructure</option>
-                  <option value="phase2Area">Phase 2: Features</option>
-                </select>
-              </div>
-              <div class="form-group flex-row">
-                <input type="date" id="newTaskStart" class="form-input" min="2026-03-25" max="2026-04-09" title="Start Date">
-                <input type="number" id="newTaskDays" class="form-input" placeholder="Duration (Days)" min="1">
-                <button id="addTaskBtn" class="primary-btn shrink-btn">Add Task</button>
-              </div>
-            </div>
-          </div>
-
-          <div class="card progress-panel glass-panel">
-            <span class="editable-hint" style="margin-bottom: 12px; display: inline-block;">✏️ Tip: Click on any Phase name to edit it directly.</span>
+          <div class="card progress-panel">
             <div class="schedule-board">
               <h3>DSD-S1-TEST Development Schedule</h3>
 
@@ -170,10 +141,10 @@
                   <div class="today-line" id="todayLine" aria-hidden="true" title="Today"></div>
                 </div>
 
-                <div class="phase phase-bg-1 editable-field" contenteditable="true">Phase 1: Infrastructure</div>
+                <div class="phase phase-bg-1">Phase 1: Infrastructure</div>
                 <div class="chart-area" id="phase1Area"></div>
 
-                <div class="phase phase-bg-2 editable-field" contenteditable="true">Phase 2: Features</div>
+                <div class="phase phase-bg-2">Phase 2: Features</div>
                 <div class="chart-area" id="phase2Area"></div>
               </div>
 
@@ -189,101 +160,124 @@
           <div class="section-heading">
             <p class="section-tag">News</p>
             <h2>Latest completed work</h2>
-            <p>Add new updates below. The cards act as a lightweight team news feed.</p>
-          </div>
-
-          <div class="card add-form-panel glass-panel">
-            <h3>📝 Post an Update</h3>
-            <div class="form-group">
-              <input type="date" id="newNewsDate" class="form-input">
-              <input type="text" id="newNewsTitle" class="form-input" placeholder="Update Title">
-            </div>
-            <div class="form-group">
-              <textarea id="newNewsContent" class="form-input" placeholder="What did the team accomplish?" rows="3"></textarea>
-            </div>
-            <button id="addNewsBtn" class="primary-btn">Publish News</button>
+            <p>The cards below simulate a lightweight team news feed. Click each card to expand details.</p>
           </div>
 
           <div class="news-list" id="newsList">
-            </div>
+            <article class="card news-card expandable open">
+              <button class="news-toggle">
+                <div>
+                  <span class="news-date">2026-03-29</span>
+                  <h3>Website structure finished</h3>
+                </div>
+                <span class="toggle-icon">−</span>
+              </button>
+              <div class="news-body">
+                <p>The team website now includes four interactive sections: Home, Progress, News, and Members.</p>
+              </div>
+            </article>
+
+            <article class="card news-card expandable">
+              <button class="news-toggle">
+                <div>
+                  <span class="news-date">2026-03-28</span>
+                  <h3>Initial role framework confirmed</h3>
+                </div>
+                <span class="toggle-icon">+</span>
+              </button>
+              <div class="news-body">
+                <p>PM, Vice PM, System Architect, and programmers were mapped to project responsibilities.</p>
+              </div>
+            </article>
+
+            <article class="card news-card expandable">
+              <button class="news-toggle">
+                <div>
+                  <span class="news-date">2026-03-27</span>
+                  <h3>System goals documented</h3>
+                </div>
+                <span class="toggle-icon">+</span>
+              </button>
+              <div class="news-body">
+                <p>The team clarified the focus on wireless sensors, protocol reliability, and motion data transmission.</p>
+              </div>
+            </article>
+          </div>
         </section>
 
         <section id="members" class="page">
           <div class="section-heading">
             <p class="section-tag">Members</p>
             <h2>Team members and responsibilities</h2>
-            <p>
-              Click on any member card to view their profile. <strong style="color:var(--primary)">Click directly on the text in the profile panel to edit their information.</strong>
-            </p>
+            <p>There are 5 members in total. Click any card to view the personal profile section.</p>
           </div>
 
           <div class="member-grid default-member-grid">
-            <article class="card member-card profile-trigger" data-member="member1">
+            <article class="card member-card profile-trigger" data-member="derui">
               <div class="member-mini-top">
-                <div class="avatar emoji-avatar">👤</div>
+                <div class="avatar emoji-avatar">🧑‍💻</div>
                 <div>
-                  <h3>Member 1</h3>
-                  <p class="member-role-text">Role Unassigned</p>
+                  <h3>Derui Tang</h3>
+                  <p class="member-role-text">Home Page Developer / Admin</p>
                 </div>
               </div>
             </article>
 
-            <article class="card member-card profile-trigger" data-member="member2">
+            <article class="card member-card profile-trigger" data-member="yuxuan">
               <div class="member-mini-top">
-                <div class="avatar emoji-avatar">👤</div>
+                <div class="avatar emoji-avatar">👨‍🔧</div>
                 <div>
-                  <h3>Member 2</h3>
-                  <p class="member-role-text">Role Unassigned</p>
+                  <h3>Yuxuan Li</h3>
+                  <p class="member-role-text">Firmware Programmer</p>
                 </div>
               </div>
             </article>
 
-            <article class="card member-card profile-trigger" data-member="member3">
+            <article class="card member-card profile-trigger" data-member="wenhao">
               <div class="member-mini-top">
-                <div class="avatar emoji-avatar">👤</div>
+                <div class="avatar emoji-avatar">👨‍💻</div>
                 <div>
-                  <h3>Member 3</h3>
-                  <p class="member-role-text">Role Unassigned</p>
+                  <h3>Wenhao Zhang</h3>
+                  <p class="member-role-text">Hardware Programmer</p>
                 </div>
               </div>
             </article>
 
-            <article class="card member-card profile-trigger" data-member="member4">
+            <article class="card member-card profile-trigger" data-member="lin">
               <div class="member-mini-top">
-                <div class="avatar emoji-avatar">👤</div>
+                <div class="avatar emoji-avatar">👩‍📊</div>
                 <div>
-                  <h3>Member 4</h3>
-                  <p class="member-role-text">Role Unassigned</p>
+                  <h3>Lin Chen</h3>
+                  <p class="member-role-text">Project Manager</p>
                 </div>
               </div>
             </article>
 
-            <article class="card member-card profile-trigger" data-member="member5">
+            <article class="card member-card profile-trigger" data-member="miguel">
               <div class="member-mini-top">
-                <div class="avatar emoji-avatar">👤</div>
+                <div class="avatar emoji-avatar">🌍</div>
                 <div>
-                  <h3>Member 5</h3>
-                  <p class="member-role-text">Role Unassigned</p>
+                  <h3>Miguel Silva</h3>
+                  <p class="member-role-text">Shadow PM / System Architect</p>
                 </div>
               </div>
             </article>
           </div>
 
           <article class="card member-profile-panel" id="memberProfilePanel">
-            <span class="editable-hint">✏️ Tip: Click on any text below to edit the member's profile directly.</span>
             <div class="member-profile-header">
-              <div class="member-profile-avatar editable-field" id="profileAvatar" contenteditable="true">👤</div>
+              <div class="member-profile-avatar" id="profileAvatar">🧑‍💻</div>
               <div class="member-profile-headings">
-                <h2 id="profileName" class="editable-field" contenteditable="true">Select a member</h2>
-                <p class="profile-role editable-field" id="profileRole" contenteditable="true">Role: ...</p>
-                <p class="profile-skills editable-field" id="profileSkills" contenteditable="true">Skills: ...</p>
+                <h2 id="profileName">Derui Tang</h2>
+                <p class="profile-role" id="profileRole">Role: Home Page Developer / Admin</p>
+                <p class="profile-skills" id="profileSkills">Skills: GitHub Actions, Vibe Coding</p>
               </div>
             </div>
             <div class="profile-divider"></div>
-            <h2 id="profileTitle" class="editable-field" contenteditable="true">Profile Details</h2>
+            <h2 id="profileTitle">Derui Tang Profile</h2>
             <div class="profile-divider"></div>
-            <p class="profile-description editable-field" id="profileDescription" contenteditable="true">
-              Select a member above to view and edit their description.
+            <p class="profile-description" id="profileDescription">
+              My name is Derui Tang. I am currently an undergraduate student at Jilin University. I am interested in vibe coding and algorithms. Besides study, football is my favourite. I used to play for my middle school as a center back. I am also a fan of Tottenham Hotspur. Cristiano Ronaldo is the GOAT in my option.
             </p>
           </article>
         </section>
@@ -294,24 +288,6 @@
       </footer>
     </div>
 
-    <div id="editTaskModal" class="modal-backdrop hidden">
-      <div class="card glass-panel modal-content">
-        <h3 style="margin-top: 0;">✏️ Edit Task</h3>
-        <div class="form-group">
-          <input type="text" id="editTaskName" class="form-input" placeholder="Task Name">
-        </div>
-        <div class="form-group flex-row">
-          <input type="date" id="editTaskStart" class="form-input" min="2026-03-25" max="2026-04-09" title="Start Date">
-          <input type="number" id="editTaskDays" class="form-input" placeholder="Duration (Days)" min="1">
-        </div>
-        <div class="modal-actions">
-          <button id="deleteTaskBtn" class="secondary-btn" style="color:var(--danger); border-color:var(--danger)">Delete Task</button>
-          <button id="cancelEditBtn" class="secondary-btn">Cancel</button>
-          <button id="saveTaskBtn" class="primary-btn">Save Changes</button>
-        </div>
-      </div>
-    </div>
-    
     <script src="script.js"></script>
   </body>
 </html>
