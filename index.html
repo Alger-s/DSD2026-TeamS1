@@ -76,46 +76,59 @@
         <section id="progress" class="page">
           <div class="section-heading progress-heading">
             <h2>Progress</h2>
-            <p>Project Schedule:</p>
+            <p>Project Schedule & Task Management</p>
           </div>
 
-          <div class="card add-form-panel">
-            <h3>Add New Task</h3>
-            <div class="form-group">
-              <input type="text" id="newTaskName" class="form-input" placeholder="Task Name (e.g. Code Review)">
-              <select id="newTaskPhase" class="form-input">
-                <option value="1">Phase 1: Infrastructure</option>
-                <option value="2">Phase 2: Features</option>
-              </select>
+          <div class="grid two-col form-panels-grid">
+            <div class="card add-form-panel glass-panel">
+              <h3><span class="icon">📁</span> Add New Phase</h3>
+              <p class="form-hint">Create a new development phase block.</p>
+              <div class="form-group flex-row">
+                <input type="text" id="newPhaseName" class="form-input" placeholder="e.g. Phase 3: Deployment">
+                <button id="addPhaseBtn" class="primary-btn shrink-btn">Add Phase</button>
+              </div>
             </div>
-            <div class="form-group">
-              <input type="number" id="newTaskStart" class="form-input" placeholder="Start Timeline % (0-100)">
-              <input type="number" id="newTaskWidth" class="form-input" placeholder="Duration Width % (1-100)">
-              <button id="addTaskBtn" class="primary-btn">Add to Chart</button>
+
+            <div class="card add-form-panel glass-panel">
+              <h3><span class="icon">📌</span> Add New Task</h3>
+              <p class="form-hint">Specify start date and duration (in days).</p>
+              <div class="form-group">
+                <input type="text" id="newTaskName" class="form-input" placeholder="Task Name (e.g. Sensor Debugging)">
+                <select id="newTaskPhase" class="form-input">
+                  <option value="phase1Area">Phase 1: Infrastructure</option>
+                  <option value="phase2Area">Phase 2: Features</option>
+                </select>
+              </div>
+              <div class="form-group flex-row">
+                <input type="date" id="newTaskStart" class="form-input" min="2026-03-25" max="2026-04-09" title="Start Date">
+                <input type="number" id="newTaskDays" class="form-input" placeholder="Duration (Days)" min="1">
+                <button id="addTaskBtn" class="primary-btn shrink-btn">Add Task</button>
+              </div>
             </div>
           </div>
 
-          <div class="card progress-panel">
+          <div class="card progress-panel glass-panel">
+            <span class="editable-hint" style="margin-bottom: 12px; display: inline-block;">✏️ Tip: Click on any Phase name to edit it directly.</span>
             <div class="schedule-board">
               <h3>DSD-S1-TEST Development Schedule</h3>
-              <div class="schedule-grid">
-                <div class="phase phase-1">Phase 1: Infrastructure</div>
-                <div class="chart-area" id="phase1Area">
+
+              <div class="schedule-grid" id="scheduleGrid">
+                <div class="grid-lines-container">
                   <div class="grid-lines">
                     <span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span>
                   </div>
-                  <div class="today-line" aria-hidden="true"></div>
-                  <div class="task-bar task-a" title="Tech Stack Planning"><span>Tech Stack Planning</span></div>
-                  <div class="task-bar task-b" title="Static Server & Routing"><span>Static Server &amp; Routing</span></div>
-                  <div class="task-bar task-c active-task" title="Markdown Parsing Engine"><span>Markdown Parsing Engine</span></div>
+                  <div class="today-line" id="todayLine" aria-hidden="true" title="Today"></div>
                 </div>
 
-                <div class="phase phase-2">Phase 2: Features</div>
-                <div class="chart-area chart-area-bottom" id="phase2Area">
-                  <div class="task-bar task-d" title="CI/CD Pipeline"><span>CI/CD Pipeline</span></div>
-                  <div class="task-bar task-e" title="Testing & Integration"><span>Testing &amp; Integration</span></div>
+                <div class="phase phase-bg-1 editable-field" contenteditable="true">Phase 1: Infrastructure</div>
+                <div class="chart-area" id="phase1Area">
+                  </div>
+
+                <div class="phase phase-bg-2 editable-field" contenteditable="true">Phase 2: Features</div>
+                <div class="chart-area" id="phase2Area">
                 </div>
               </div>
+
               <div class="date-axis">
                 <span>03-25</span><span>03-27</span><span>03-29</span><span>03-31</span><span>04-01</span>
                 <span>04-03</span><span>04-05</span><span>04-07</span><span>04-09</span>
