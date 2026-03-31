@@ -294,6 +294,24 @@
       </footer>
     </div>
 
+    <div id="editTaskModal" class="modal-backdrop hidden">
+      <div class="card glass-panel modal-content">
+        <h3 style="margin-top: 0;">✏️ Edit Task</h3>
+        <div class="form-group">
+          <input type="text" id="editTaskName" class="form-input" placeholder="Task Name">
+        </div>
+        <div class="form-group flex-row">
+          <input type="date" id="editTaskStart" class="form-input" min="2026-03-25" max="2026-04-09" title="Start Date">
+          <input type="number" id="editTaskDays" class="form-input" placeholder="Duration (Days)" min="1">
+        </div>
+        <div class="modal-actions">
+          <button id="deleteTaskBtn" class="secondary-btn" style="color:var(--danger); border-color:var(--danger)">Delete Task</button>
+          <button id="cancelEditBtn" class="secondary-btn">Cancel</button>
+          <button id="saveTaskBtn" class="primary-btn">Save Changes</button>
+        </div>
+      </div>
+    </div>
+    
     <script src="script.js"></script>
   </body>
 </html>
