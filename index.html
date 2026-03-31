@@ -59,66 +59,16 @@
           <div class="section-heading">
             <p class="section-tag">Overview</p>
             <h2>About Team S1</h2>
-            <p>
-              This website summarizes the team background, sprint progress, latest news, and member roles.
-              It is designed as a clear GitHub Pages friendly project site with interactive section switching.
-            </p>
+            <p>This website summarizes the team background, sprint progress, latest news, and member roles.</p>
           </div>
-
           <div class="grid two-col">
             <article class="card info-card">
               <h3>Project scope</h3>
-              <p>
-                Team S1 develops a wireless joint motion capture system. The work combines embedded sensing,
-                protocol definition, firmware integration, and cross-cultural teamwork.
-              </p>
+              <p>Team S1 develops a wireless joint motion capture system...</p>
             </article>
             <article class="card info-card">
               <h3>What makes this team special</h3>
-              <p>
-                Hardware-related tasks are mainly handled by China-based members because the physical sensors are
-                currently available there, while planning and collaboration bridge multiple time zones.
-              </p>
-            </article>
-          </div>
-
-          <div class="grid stats-grid">
-            <div class="card stat-card">
-              <span class="stat-value">4</span>
-              <span class="stat-label">Core sections</span>
-            </div>
-            <div class="card stat-card">
-              <span class="stat-value">5</span>
-              <span class="stat-label">Team members</span>
-            </div>
-            <div class="card stat-card">
-              <span class="stat-value">1</span>
-              <span class="stat-label">Sprint 1 deliverable</span>
-            </div>
-            <div class="card stat-card">
-              <span class="stat-value">CN + PT</span>
-              <span class="stat-label">Cross-country collaboration</span>
-            </div>
-          </div>
-
-          <div class="grid two-col">
-            <article class="card timeline-card">
-              <h3>Current focus</h3>
-              <ol>
-                <li>Sensor firmware implementation</li>
-                <li>Communication packet design</li>
-                <li>Interface alignment between software and hardware</li>
-                <li>Testing reliability of wireless transmission</li>
-              </ol>
-            </article>
-            <article class="card timeline-card">
-              <h3>Deliverable checklist</h3>
-              <div class="checklist">
-                <label><input type="checkbox" checked /> Team scope defined</label>
-                <label><input type="checkbox" checked /> Roles assigned</label>
-                <label><input type="checkbox" checked /> Website structure designed</label>
-                <label><input type="checkbox" /> IF1 finalized</label>
-              </div>
+              <p>Hardware-related tasks are mainly handled by China-based members...</p>
             </article>
           </div>
         </section>
@@ -129,50 +79,46 @@
             <p>Project Schedule:</p>
           </div>
 
+          <div class="card add-form-panel">
+            <h3>Add New Task</h3>
+            <div class="form-group">
+              <input type="text" id="newTaskName" class="form-input" placeholder="Task Name (e.g. Code Review)">
+              <select id="newTaskPhase" class="form-input">
+                <option value="1">Phase 1: Infrastructure</option>
+                <option value="2">Phase 2: Features</option>
+              </select>
+            </div>
+            <div class="form-group">
+              <input type="number" id="newTaskStart" class="form-input" placeholder="Start Timeline % (0-100)">
+              <input type="number" id="newTaskWidth" class="form-input" placeholder="Duration Width % (1-100)">
+              <button id="addTaskBtn" class="primary-btn">Add to Chart</button>
+            </div>
+          </div>
+
           <div class="card progress-panel">
             <div class="schedule-board">
               <h3>DSD-S1-TEST Development Schedule</h3>
-
               <div class="schedule-grid">
                 <div class="phase phase-1">Phase 1: Infrastructure</div>
-                <div class="chart-area">
+                <div class="chart-area" id="phase1Area">
                   <div class="grid-lines">
                     <span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span>
                   </div>
                   <div class="today-line" aria-hidden="true"></div>
-
-                  <div class="task-bar task-a" title="Tech Stack Planning">
-                    <span>Tech Stack Planning</span>
-                  </div>
-                  <div class="task-bar task-b" title="Static Server & Routing">
-                    <span>Static Server &amp; Routing</span>
-                  </div>
-                  <div class="task-bar task-c active-task" title="Markdown Parsing Engine">
-                    <span>Markdown Parsing Engine</span>
-                  </div>
+                  <div class="task-bar task-a" title="Tech Stack Planning"><span>Tech Stack Planning</span></div>
+                  <div class="task-bar task-b" title="Static Server & Routing"><span>Static Server &amp; Routing</span></div>
+                  <div class="task-bar task-c active-task" title="Markdown Parsing Engine"><span>Markdown Parsing Engine</span></div>
                 </div>
 
                 <div class="phase phase-2">Phase 2: Features</div>
-                <div class="chart-area chart-area-bottom">
-                  <div class="task-bar task-d" title="CI/CD Pipeline">
-                    <span>CI/CD Pipeline</span>
-                  </div>
-                  <div class="task-bar task-e" title="Testing & Integration">
-                    <span>Testing &amp; Integration</span>
-                  </div>
+                <div class="chart-area chart-area-bottom" id="phase2Area">
+                  <div class="task-bar task-d" title="CI/CD Pipeline"><span>CI/CD Pipeline</span></div>
+                  <div class="task-bar task-e" title="Testing & Integration"><span>Testing &amp; Integration</span></div>
                 </div>
               </div>
-
               <div class="date-axis">
-                <span>03-25</span>
-                <span>03-27</span>
-                <span>03-29</span>
-                <span>03-31</span>
-                <span>04-01</span>
-                <span>04-03</span>
-                <span>04-05</span>
-                <span>04-07</span>
-                <span>04-09</span>
+                <span>03-25</span><span>03-27</span><span>03-29</span><span>03-31</span><span>04-01</span>
+                <span>04-03</span><span>04-05</span><span>04-07</span><span>04-09</span>
               </div>
             </div>
           </div>
@@ -182,49 +128,23 @@
           <div class="section-heading">
             <p class="section-tag">News</p>
             <h2>Latest completed work</h2>
-            <p>The cards below simulate a lightweight team news feed. Click each card to expand details.</p>
+            <p>Add new updates below. The cards act as a lightweight team news feed.</p>
           </div>
 
-          <div class="news-list">
-            <article class="card news-card expandable open">
-              <button class="news-toggle">
-                <div>
-                  <span class="news-date">2026-03-29</span>
-                  <h3>Website structure finished</h3>
-                </div>
-                <span class="toggle-icon">−</span>
-              </button>
-              <div class="news-body">
-                <p>The team website now includes four interactive sections: Home, Progress, News, and Members.</p>
-              </div>
-            </article>
-
-            <article class="card news-card expandable">
-              <button class="news-toggle">
-                <div>
-                  <span class="news-date">2026-03-28</span>
-                  <h3>Initial role framework confirmed</h3>
-                </div>
-                <span class="toggle-icon">+</span>
-              </button>
-              <div class="news-body">
-                <p>PM, Vice PM, System Architect, and programmers were mapped to project responsibilities.</p>
-              </div>
-            </article>
-
-            <article class="card news-card expandable">
-              <button class="news-toggle">
-                <div>
-                  <span class="news-date">2026-03-27</span>
-                  <h3>System goals documented</h3>
-                </div>
-                <span class="toggle-icon">+</span>
-              </button>
-              <div class="news-body">
-                <p>The team clarified the focus on wireless sensors, protocol reliability, and motion data transmission.</p>
-              </div>
-            </article>
+          <div class="card add-form-panel">
+            <h3>Post an Update</h3>
+            <div class="form-group">
+              <input type="date" id="newNewsDate" class="form-input">
+              <input type="text" id="newNewsTitle" class="form-input" placeholder="Update Title">
+            </div>
+            <div class="form-group">
+              <textarea id="newNewsContent" class="form-input" placeholder="What did the team accomplish?" rows="3"></textarea>
+            </div>
+            <button id="addNewsBtn" class="primary-btn">Publish News</button>
           </div>
+
+          <div class="news-list" id="newsList">
+            </div>
         </section>
 
         <section id="members" class="page">
@@ -232,97 +152,77 @@
             <p class="section-tag">Members</p>
             <h2>Team members and responsibilities</h2>
             <p>
-              There are 5 members in total: 4 Chinese members and 1 Portuguese member.
-              The cards are shown in a default state first. Click any card to view or update the personal profile section.
+              Click on any member card to view their profile. <strong style="color:var(--primary)">Click directly on the text in the profile panel to edit their information.</strong>
             </p>
           </div>
 
           <div class="member-grid default-member-grid">
-            <article class="card member-card profile-trigger" data-member="derui">
+            <article class="card member-card profile-trigger" data-member="member1">
               <div class="member-mini-top">
-                <div class="avatar emoji-avatar">🧑‍💻</div>
+                <div class="avatar emoji-avatar">👤</div>
                 <div>
-                  <h3>Derui Tang</h3>
-                  <p class="member-role-text">Home Page Developer / Admin</p>
+                  <h3>Member 1</h3>
+                  <p class="member-role-text">Role Unassigned</p>
                 </div>
               </div>
-              <ul>
-                <li>Country: China</li>
-                <li>Focus: homepage, deployment, site maintenance</li>
-              </ul>
             </article>
 
-            <article class="card member-card profile-trigger" data-member="yuxuan">
+            <article class="card member-card profile-trigger" data-member="member2">
               <div class="member-mini-top">
-                <div class="avatar emoji-avatar">👨‍🔧</div>
+                <div class="avatar emoji-avatar">👤</div>
                 <div>
-                  <h3>Yuxuan Li</h3>
-                  <p class="member-role-text">Firmware Programmer</p>
+                  <h3>Member 2</h3>
+                  <p class="member-role-text">Role Unassigned</p>
                 </div>
               </div>
-              <ul>
-                <li>Country: China</li>
-                <li>Focus: sensor firmware and calibration</li>
-              </ul>
             </article>
 
-            <article class="card member-card profile-trigger" data-member="wenhao">
+            <article class="card member-card profile-trigger" data-member="member3">
               <div class="member-mini-top">
-                <div class="avatar emoji-avatar">👨‍💻</div>
+                <div class="avatar emoji-avatar">👤</div>
                 <div>
-                  <h3>Wenhao Zhang</h3>
-                  <p class="member-role-text">Hardware Programmer</p>
+                  <h3>Member 3</h3>
+                  <p class="member-role-text">Role Unassigned</p>
                 </div>
               </div>
-              <ul>
-                <li>Country: China</li>
-                <li>Focus: drivers and microcontroller integration</li>
-              </ul>
+            </article>
+            
+            <article class="card member-card profile-trigger" data-member="member4">
+              <div class="member-mini-top">
+                <div class="avatar emoji-avatar">👤</div>
+                <div>
+                  <h3>Member 4</h3>
+                  <p class="member-role-text">Role Unassigned</p>
+                </div>
+              </div>
             </article>
 
-            <article class="card member-card profile-trigger" data-member="lin">
+            <article class="card member-card profile-trigger" data-member="member5">
               <div class="member-mini-top">
-                <div class="avatar emoji-avatar">👩‍📊</div>
+                <div class="avatar emoji-avatar">👤</div>
                 <div>
-                  <h3>Lin Chen</h3>
-                  <p class="member-role-text">Project Manager</p>
+                  <h3>Member 5</h3>
+                  <p class="member-role-text">Role Unassigned</p>
                 </div>
               </div>
-              <ul>
-                <li>Country: China</li>
-                <li>Focus: sprint planning and instructor communication</li>
-              </ul>
-            </article>
-
-            <article class="card member-card profile-trigger accent-card" data-member="miguel">
-              <div class="member-mini-top">
-                <div class="avatar emoji-avatar">🌍</div>
-                <div>
-                  <h3>Miguel Silva</h3>
-                  <p class="member-role-text">Shadow PM / System Architect</p>
-                </div>
-              </div>
-              <ul>
-                <li>Country: Portugal</li>
-                <li>Focus: cross-time-zone coordination and protocol design</li>
-              </ul>
             </article>
           </div>
 
           <article class="card member-profile-panel" id="memberProfilePanel">
+            <span class="editable-hint">✏️ Tip: Click on any text below to edit the member's profile directly.</span>
             <div class="member-profile-header">
-              <div class="member-profile-avatar" id="profileAvatar">🧑‍💻</div>
+              <div class="member-profile-avatar editable-field" id="profileAvatar" contenteditable="true">👤</div>
               <div class="member-profile-headings">
-                <h2 id="profileName">Derui Tang</h2>
-                <p class="profile-role" id="profileRole">Role: Home Page Developer / Admin</p>
-                <p class="profile-skills" id="profileSkills">Skills: GitHub Actions, Vibe Coding</p>
+                <h2 id="profileName" class="editable-field" contenteditable="true">Select a member</h2>
+                <p class="profile-role editable-field" id="profileRole" contenteditable="true">Role: ...</p>
+                <p class="profile-skills editable-field" id="profileSkills" contenteditable="true">Skills: ...</p>
               </div>
             </div>
             <div class="profile-divider"></div>
-            <h2 id="profileTitle">Derui Tang Profile</h2>
+            <h2 id="profileTitle" class="editable-field" contenteditable="true">Profile Details</h2>
             <div class="profile-divider"></div>
-            <p class="profile-description" id="profileDescription">
-              My name is Derui Tang. I am currently an undergraduate student at Jilin University. I am interested in vibe coding and algorithms. Besides study, football is my favourite. I used to play for my middle school as a center back. I am also a fan of Tottenham Hotspur. Cristiano Ronaldo is the GOAT in my option.
+            <p class="profile-description editable-field" id="profileDescription" contenteditable="true">
+              Select a member above to view and edit their description.
             </p>
           </article>
         </section>
