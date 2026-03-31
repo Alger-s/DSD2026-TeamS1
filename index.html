@@ -59,16 +59,66 @@
           <div class="section-heading">
             <p class="section-tag">Overview</p>
             <h2>About Team S1</h2>
-            <p>This website summarizes the team background, sprint progress, latest news, and member roles.</p>
+            <p>
+              This website summarizes the team background, sprint progress, latest news, and member roles.
+              It is designed as a clear GitHub Pages friendly project site with interactive section switching.
+            </p>
           </div>
+
           <div class="grid two-col">
             <article class="card info-card">
               <h3>Project scope</h3>
-              <p>Team S1 develops a wireless joint motion capture system...</p>
+              <p>
+                Team S1 develops a wireless joint motion capture system. The work combines embedded sensing,
+                protocol definition, firmware integration, and cross-cultural teamwork.
+              </p>
             </article>
             <article class="card info-card">
               <h3>What makes this team special</h3>
-              <p>Hardware-related tasks are mainly handled by China-based members...</p>
+              <p>
+                Hardware-related tasks are mainly handled by China-based members because the physical sensors are
+                currently available there, while planning and collaboration bridge multiple time zones.
+              </p>
+            </article>
+          </div>
+
+          <div class="grid stats-grid">
+            <div class="card stat-card">
+              <span class="stat-value">4</span>
+              <span class="stat-label">Core sections</span>
+            </div>
+            <div class="card stat-card">
+              <span class="stat-value">5</span>
+              <span class="stat-label">Team members</span>
+            </div>
+            <div class="card stat-card">
+              <span class="stat-value">1</span>
+              <span class="stat-label">Sprint 1 deliverable</span>
+            </div>
+            <div class="card stat-card">
+              <span class="stat-value">CN + PT</span>
+              <span class="stat-label">Cross-country collaboration</span>
+            </div>
+          </div>
+
+          <div class="grid two-col">
+            <article class="card timeline-card">
+              <h3>Current focus</h3>
+              <ol>
+                <li>Sensor firmware implementation</li>
+                <li>Communication packet design</li>
+                <li>Interface alignment between software and hardware</li>
+                <li>Testing reliability of wireless transmission</li>
+              </ol>
+            </article>
+            <article class="card timeline-card">
+              <h3>Deliverable checklist</h3>
+              <div class="checklist">
+                <label><input type="checkbox" checked /> Team scope defined</label>
+                <label><input type="checkbox" checked /> Roles assigned</label>
+                <label><input type="checkbox" checked /> Website structure designed</label>
+                <label><input type="checkbox" /> IF1 finalized</label>
+              </div>
             </article>
           </div>
         </section>
@@ -93,7 +143,7 @@
               <h3><span class="icon">📌</span> Add New Task</h3>
               <p class="form-hint">Specify start date and duration (in days).</p>
               <div class="form-group">
-                <input type="text" id="newTaskName" class="form-input" placeholder="Task Name (e.g. Sensor Debugging)">
+                <input type="text" id="newTaskName" class="form-input" placeholder="Task Name (e.g. Code Review)">
                 <select id="newTaskPhase" class="form-input">
                   <option value="phase1Area">Phase 1: Infrastructure</option>
                   <option value="phase2Area">Phase 2: Features</option>
@@ -121,12 +171,10 @@
                 </div>
 
                 <div class="phase phase-bg-1 editable-field" contenteditable="true">Phase 1: Infrastructure</div>
-                <div class="chart-area" id="phase1Area">
-                  </div>
+                <div class="chart-area" id="phase1Area"></div>
 
                 <div class="phase phase-bg-2 editable-field" contenteditable="true">Phase 2: Features</div>
-                <div class="chart-area" id="phase2Area">
-                </div>
+                <div class="chart-area" id="phase2Area"></div>
               </div>
 
               <div class="date-axis">
@@ -144,8 +192,8 @@
             <p>Add new updates below. The cards act as a lightweight team news feed.</p>
           </div>
 
-          <div class="card add-form-panel">
-            <h3>Post an Update</h3>
+          <div class="card add-form-panel glass-panel">
+            <h3>📝 Post an Update</h3>
             <div class="form-group">
               <input type="date" id="newNewsDate" class="form-input">
               <input type="text" id="newNewsTitle" class="form-input" placeholder="Update Title">
@@ -199,7 +247,7 @@
                 </div>
               </div>
             </article>
-            
+
             <article class="card member-card profile-trigger" data-member="member4">
               <div class="member-mini-top">
                 <div class="avatar emoji-avatar">👤</div>
