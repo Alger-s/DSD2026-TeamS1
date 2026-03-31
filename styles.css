@@ -237,3 +237,26 @@ textarea.form-input { resize: vertical; min-height: 80px; }
   background: linear-gradient(90deg, var(--primary-strong), var(--primary));
   border: 1px solid rgba(255,255,255,0.8); color: #04111e; font-weight: 700;
 }
+
+/* ---- Task Edit Modal Styles ---- */
+.modal-backdrop {
+  position: fixed; inset: 0; background: rgba(0,0,0,0.5); backdrop-filter: blur(4px);
+  display: flex; align-items: center; justify-content: center; z-index: 1000;
+  opacity: 1; transition: opacity 0.2s ease;
+}
+.modal-backdrop.hidden {
+  opacity: 0; pointer-events: none;
+}
+.modal-content {
+  width: 90%; max-width: 420px; padding: 24px;
+  transform: translateY(0); transition: transform 0.2s ease;
+}
+.modal-backdrop.hidden .modal-content {
+  transform: translateY(20px);
+}
+.modal-actions {
+  display: flex; gap: 10px; justify-content: flex-end; margin-top: 20px;
+}
+.task-bar {
+  cursor: pointer; /* 提示可点击 */
+}
